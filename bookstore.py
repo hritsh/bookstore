@@ -1,50 +1,10 @@
+from tkinter import messagebox, ttk
 import mysql.connector
-"""
-CREATE TABLE Book (
-  ISBN CHAR(13) PRIMARY KEY,
-  Title VARCHAR(255) NOT NULL,
-  Author VARCHAR(255) NOT NULL,
-  Publisher VARCHAR(255) NOT NULL,
-  Publication_Date DATE NOT NULL,
-  Price DECIMAL(10, 2) NOT NULL,
-  Quantity INT NOT NULL
-);
-
-CREATE TABLE Customer (
-  Customer_ID INT AUTO_INCREMENT PRIMARY KEY,
-  Name VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  Phone VARCHAR(20) NOT NULL,
-  Address VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE `Order` (
-  Order_ID INT AUTO_INCREMENT PRIMARY KEY,
-  Customer_ID INT NOT NULL,
-  Order_Date DATETIME NOT NULL,
-  FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
-);
-
-CREATE TABLE Transaction (
-  Transaction_ID INT AUTO_INCREMENT PRIMARY KEY,
-  Order_ID INT NOT NULL,
-  Transaction_Date DATETIME NOT NULL,
-  Payment_Method VARCHAR(255) NOT NULL,
-  FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
-);
-
-CREATE TABLE Order_Item (
-  Order_ID INT NOT NULL,
-  ISBN CHAR(13) NOT NULL,
-  Quantity INT NOT NULL,
-  Price DECIMAL(10, 2) NOT NULL,
-  PRIMARY KEY (Order_ID, ISBN),
-  FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID),
-  FOREIGN KEY (ISBN) REFERENCES Book(ISBN)
-);"""
+import tkinter as tk
 
 
 def tableprint(lst):
+    # Print MySQL output as a table, padded for readability
     widths = []
     columns = []
     border = '|'
@@ -71,22 +31,8 @@ def tableprint(lst):
     print(separator)
 
 
-# Connect to the MySQL database
-connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="bookstore"
-)
-
-# Create a cursor object
-cursor = connection.cursor()
-cart = {}
-
-# Create a menu
-
-
 def customer_menu():
+    # Customer menu
     while True:
         print("What would you like to do?")
         print("1. Show all books")
@@ -172,10 +118,9 @@ def customer_menu():
         else:
             print("Invalid choice")
 
-# Create a menu
-
 
 def admin_menu():
+    # Admin menu
     while True:
         print("What would you like to do?")
         print("1. Show all books")
@@ -240,8 +185,8 @@ def admin_menu():
             print("Invalid choice")
 
 
-# Create a main menu
 def menu():
+    # Main menu
     while True:
         print("What would you like to login as?")
         print("1. Customer")
@@ -266,8 +211,22 @@ def menu():
             print("Invalid choice")
 
 
-# Close the cursor and connection
 if __name__ == "__main__":
+    # Connect to the MySQL database
+    connection = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="bookstore"
+    )
+
+    # Create a cursor object
+    cursor = connection.cursor()
+    cart = {}
+
+    # Display the main menu
     menu()
+
+    # Close the cursor and connection
     cursor.close()
     connection.close()
