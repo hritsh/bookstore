@@ -20,17 +20,79 @@ INSERT INTO Book (ISBN, Title, Author, Publisher, Publication_Date, Price, Quant
 
 INSERT INTO Customer (Name, Email, Phone, Address) VALUES
 ('John Smith', 'john.smith@email.com', '555-123-4567', '123 Main St.'),
-('Jane Doe', 'jane.doe@email.com', '555-234-5678', '456 Oak Ave.');
+('Jane Doe', 'jane.doe@email.com', '555-234-5678', '456 Oak Ave.'),
+('Mary Johnson', 'mary.johnson@email.com', '555-345-6789', '789 Elm St.'),
+('Robert Lee', 'robert.lee@email.com', '555-456-7890', '345 Maple Ave.'),
+('Lisa Chen', 'lisa.chen@email.com', '555-567-8901', '567 Pine St.'),
+('David Kim', 'david.kim@email.com', '555-678-9012', '901 Oak St.'),
+('Emily Wong', 'emily.wong@email.com', '555-789-0123', '234 Cherry St.'),
+('James Davis', 'james.davis@email.com', '555-890-1234', '678 Walnut St.'),
+('Sarah Johnson', 'sarah.johnson@email.com', '555-901-2345', '123 Pine St.'),
+('John Smith', 'john.smith@email.com', '555-123-4567', '123 Main St.'),
+('Jane Doe', 'jane.doe@email.com', '555-234-5678', '456 Oak Ave.'),
+('Mary Johnson', 'mary.johnson@email.com', '555-345-6789', '789 Elm St.'),
+('Robert Lee', 'robert.lee@email.com', '555-456-7890', '345 Maple Ave.'),
+('Lisa Chen', 'lisa.chen@email.com', '555-567-8901', '567 Pine St.'),
+('David Kim', 'david.kim@email.com', '555-678-9012', '901 Oak St.'),
+('Emily Wong', 'emily.wong@email.com', '555-789-0123', '234 Cherry St.'),
+('James Davis', 'james.davis@email.com', '555-890-1234', '678 Walnut St.'),
+('Sarah Johnson', 'sarah.johnson@email.com', '555-901-2345', '123 Pine St.');
 
 INSERT INTO `Order` (Customer_ID, Order_Date) VALUES
 (1, '2023-04-15 09:30:00'),
-(2, '2023-04-15 10:15:00');
+(2, '2023-04-15 10:15:00'),
+(1, '2023-04-16 11:00:00'),
+(2, '2023-04-16 12:30:00'),
+(3, '2023-04-16 14:00:00'),
+(4, '2023-04-17 10:00:00'),
+(5, '2023-04-17 11:30:00'),
+(6, '2023-04-18 13:00:00'),
+(7, '2023-04-18 14:45:00'),
+(8, '2023-04-19 09:00:00'),
+(9, '2023-04-19 11:00:00'),
+(10, '2023-04-19 13:00:00'),
+(1, '2023-04-20 10:00:00'),
+(2, '2023-04-20 11:30:00'),
+(3, '2023-04-21 14:00:00'),
+(4, '2023-04-21 15:30:00'),
+(5, '2023-04-22 09:00:00'),
+(6, '2023-04-22 10:30:00');
 
 INSERT INTO Transaction (Order_ID, Transaction_Date, Payment_Method) VALUES
 (1, '2023-04-15 09:45:00', 'Credit Card'),
-(1, '2023-04-15 09:46:00', 'Credit Card');
+(2, '2023-04-15 10:30:00', 'Cash'),
+(3, '2023-04-16 11:30:00', 'Debit Card'),
+(4, '2023-04-16 13:00:00', 'Credit Card'),
+(5, '2023-04-16 15:00:00', 'Cash'),
+(6, '2023-04-17 11:00:00', 'Debit Card'),
+(7, '2023-04-17 12:30:00', 'Credit Card'),
+(8, '2023-04-18 14:00:00', 'Cash'),
+(9, '2023-04-18 15:30:00', 'Debit Card'),
+(10, '2023-04-19 10:30:00', 'Credit Card'),
+(11, '2023-04-19 11:30:00', 'Credit Card'),
+(12, '2023-04-19 13:30:00', 'Debit Card'),
+(13, '2023-04-20 11:00:00', 'Credit Card'),
+(14, '2023-04-20 12:00:00', 'Cash'),
+(15, '2023-04-21 15:00:00', 'Debit Card'),
+(16, '2023-04-22 10:00:00', 'Credit Card'),
+(17, '2023-04-22 11:00:00', 'Cash'),
+(18, '2023-04-22 12:00:00', 'Debit Card');
 
 INSERT INTO Order_Item (Order_ID, ISBN, Quantity, Price) VALUES
 (1, '123456', 2, 10.99),
 (1, '234567', 1, 12.99),
-(2, '234567', 1, 12.99);
+(2, '234567', 1, 12.99),
+(3, '345678', 3, 8.99),
+(3, '456789', 2, 11.99),
+(4, '345678', 1, 8.99),
+(5, '234567', 2, 12.99),
+(6, '123456', 1, 10.99),
+(7, '456789', 1, 11.99),
+(7, '567890', 3, 9.99),
+(8, '234567', 1, 12.99),
+(8, '345678', 2, 8.99),
+(9, '123456', 2, 10.99),
+(10, '234567', 1, 12.99),
+(10, '345678', 1, 8.99),
+(10, '456789', 2, 11.99),
+(10, '567890', 3, 9.99);
