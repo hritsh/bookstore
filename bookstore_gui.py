@@ -510,12 +510,15 @@ def gui_add_to_cart(table):
     selected = table.focus()
     book = table.item(selected, "values")
 
-    # Get the ISBN and quantity
+    # Get the ISBN and stock
     isbn = book[0]
-    quantity = book[6]
+    stock = int(book[6])
 
     # Check if the book is already in the cart
-    if isbn in cart:
+    if isbn not in cart and stock:
+        # Add the book to the cart
+        cart[isbn] = 1
+    elif isbn in cart and stock >= cart[isbn]:
         # Get the quantity
         quantity = cart[isbn]
 
@@ -524,9 +527,6 @@ def gui_add_to_cart(table):
 
         # Update the quantity
         cart[isbn] = quantity
-    else:
-        # Add the book to the cart
-        cart[isbn] = 1
 
 
 def gui_view_cart():
@@ -588,11 +588,8 @@ def show_cart(table):
     # Clear the table
     table.delete(*table.get_children())
 
-    # Get the books in the cart
-    books = cart.items()
-
     # Display the books in the cart
-    for isbn, quantity in books:
+    for isbn in cart:
         # Get the book
         book = get_book(isbn)
 
@@ -612,8 +609,8 @@ def get_book(isbn):
     # Get the result
     book = cursor.fetchone()
 
-    # Add the quantity
-    book = book + (cart[isbn],)
+    # Replace the quantity
+    book = book[:6] + (cart[isbn],)
 
     # Return the book
     return book
