@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS bookstore;
+CREATE DATABASE bookstore;
+USE bookstore;
+
 CREATE TABLE Book (
   ISBN CHAR(13) PRIMARY KEY,
   Title VARCHAR(255) NOT NULL,
@@ -26,7 +30,7 @@ CREATE TABLE `Order` (
 CREATE TABLE Transaction (
   Transaction_ID INT AUTO_INCREMENT PRIMARY KEY,
   Order_ID INT NOT NULL,
-  Transaction_Date DATETIME NOT NULL,
+  Total_Price DECIMAL(10, 2) NOT NULL,
   Payment_Method VARCHAR(255) NOT NULL,
   FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
 );

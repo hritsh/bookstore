@@ -58,25 +58,25 @@ INSERT INTO `Order` (Customer_ID, Order_Date) VALUES
 (5, '2023-04-22 09:00:00'),
 (6, '2023-04-22 10:30:00');
 
-INSERT INTO Transaction (Order_ID, Transaction_Date, Payment_Method) VALUES
-(1, '2023-04-15 09:45:00', 'Credit Card'),
-(2, '2023-04-15 10:30:00', 'Cash'),
-(3, '2023-04-16 11:30:00', 'Debit Card'),
-(4, '2023-04-16 13:00:00', 'Credit Card'),
-(5, '2023-04-16 15:00:00', 'Cash'),
-(6, '2023-04-17 11:00:00', 'Debit Card'),
-(7, '2023-04-17 12:30:00', 'Credit Card'),
-(8, '2023-04-18 14:00:00', 'Cash'),
-(9, '2023-04-18 15:30:00', 'Debit Card'),
-(10, '2023-04-19 10:30:00', 'Credit Card'),
-(11, '2023-04-19 11:30:00', 'Credit Card'),
-(12, '2023-04-19 13:30:00', 'Debit Card'),
-(13, '2023-04-20 11:00:00', 'Credit Card'),
-(14, '2023-04-20 12:00:00', 'Cash'),
-(15, '2023-04-21 15:00:00', 'Debit Card'),
-(16, '2023-04-22 10:00:00', 'Credit Card'),
-(17, '2023-04-22 11:00:00', 'Cash'),
-(18, '2023-04-22 12:00:00', 'Debit Card');
+INSERT INTO Transaction (Order_ID, Total_Price, Payment_Method) VALUES
+(1, 34.97, 'Credit Card'),
+(2, 12.99, 'Cash'),
+(3, 23.98, 'Debit Card'),
+(4, 21.98, 'Credit Card'),
+(5, 10.99, 'Cash'),
+(6, 34.23, 'Debit Card'),
+(7, 12.99, 'Credit Card'),
+(8, 21.98, 'Cash'),
+(9, 32.97, 'Debit Card'),
+(10, 10.99, 'Credit Card'),
+(11, 12.99, 'Credit Card'),
+(12, 34.97, 'Debit Card'),
+(13, 30.97, 'Credit Card'),
+(14, 40.96, 'Cash'),
+(15, 12.99, 'Debit Card'),
+(16, 10.98, 'Credit Card'),
+(17, 14.97, 'Cash'),
+(18, 9.99, 'Debit Card');
 
 INSERT INTO Order_Item (Order_ID, ISBN, Quantity, Price) VALUES
 (1, '123456', 2, 10.99),
