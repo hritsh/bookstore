@@ -15,6 +15,7 @@ def show_all_books(table):
 def gui_admin_menu():
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Admin Bookstore Management System")
 
     # Create a frame to hold the table
     table_frame = tk.Frame(window)
@@ -343,6 +344,7 @@ def gui_customer_menu():
     """Display the customer menu."""
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Bookstore")
 
     # Create a frame to hold the table
     table_frame = tk.Frame(window)
@@ -408,6 +410,7 @@ def gui_search_book(table):
     """Display a window to search for a book."""
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Search Books")
 
     # Create a frame to hold the labels and entries
     entry_frame = tk.Frame(window)
@@ -533,6 +536,7 @@ def gui_view_cart():
     """Display the cart."""
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Shopping Cart")
 
     # Create a frame to hold the table
     table_frame = tk.Frame(window)
@@ -620,6 +624,7 @@ def gui_checkout():
     """Checkout the books in the cart."""
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Checkout")
 
     # Create a frame to hold the labels and entries
     entry_frame = tk.Frame(window)
@@ -756,6 +761,7 @@ def gui_menu():
     """Display the main menu."""
     # Create a Tkinter window
     window = tk.Tk()
+    window.title("Choose Mode")
 
     # Create a frame to hold the buttons
     button_frame = tk.Frame(window)
