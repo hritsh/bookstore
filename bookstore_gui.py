@@ -660,7 +660,7 @@ def gui_checkout():
 
     # Create a button to checkout
     checkout_button = tk.Button(button_frame, text="Checkout", command=lambda: checkout(
-        customer_name_entry, customer_email_entry, customer_address_entry, customer_phone_number_entry, payment_method))
+        customer_name_entry, customer_email_entry, customer_address_entry, customer_phone_number_entry, payment_method, window))
 
     # Create a button to exit
     exit_button = tk.Button(button_frame, text="Exit", command=window.destroy)
@@ -688,7 +688,7 @@ def gui_checkout():
     window.mainloop()
 
 
-def checkout(customer_name_entry, customer_email_entry, customer_address_entry, customer_phone_number_entry, payment_method):
+def checkout(customer_name_entry, customer_email_entry, customer_address_entry, customer_phone_number_entry, payment_method, window):
     """Checkout the books in the cart."""
     # Get the customer name, address, and phone number
     customer_name = customer_name_entry.get()
@@ -698,9 +698,6 @@ def checkout(customer_name_entry, customer_email_entry, customer_address_entry, 
 
     # Get the payment method
     payment_method = payment_method.get()
-
-    # Get the books in the cart
-    books = cart.items()
 
     # Create a query to insert the customer
     query = "INSERT INTO Customer (Name, Email, Phone, Address) VALUES (%s, %s, %s, %s)"
@@ -714,8 +711,8 @@ def checkout(customer_name_entry, customer_email_entry, customer_address_entry, 
     customer_id = cursor.lastrowid
 
     # Create a query to insert the order
-    query = "INSERT INTO `Order` (Customer_ID, Order_Date) VALUES (%s, now())"
-    values = (customer_id)
+    query = "INSERT INTO `Order` (Customer_ID, Order_Date) VALUES (%s, NOW())"
+    values = (customer_id,)
 
     # Execute the query
     cursor.execute(query, values)
@@ -723,35 +720,43 @@ def checkout(customer_name_entry, customer_email_entry, customer_address_entry, 
     # Get the order ID
     order_id = cursor.lastrowid
 
+    # Get the total price
+    total_price = 0
+    ordervalues = []
+    for isbn in cart:
+        # Get the book
+        book = get_book(isbn)
+
+        # Get the price
+        price = book[5]
+        quantity = book[6]
+
+        # Add the price to the total
+        total_price += price
+        # Add the values to the list
+        ordervalues.append((order_id, isbn, quantity, price))
+
     # Create a query to insert the transaction
     query = "INSERT INTO Transaction (Order_ID, Total_Price, Payment_Method) VALUES (%s, %s, %s)"
-    values = (order_id, cart.total_price(), payment_method)
+    values = (order_id, total_price, payment_method)
 
     # Execute the query
     cursor.execute(query, values)
 
     # Create a query to insert the order items
     query = "INSERT INTO Order_Item (Order_ID, ISBN, Quantity, Price) VALUES (%s, %s, %s, %s)"
-    values = []
-
-    # Loop through the books in the cart
-    for book in books:
-        # Get the ISBN, quantity, and price
-        isbn = book[0]
-        quantity = book[1].quantity
-        price = book[1].price
-
-        # Add the values to the list
-        values.append((order_id, isbn, quantity, price))
 
     # Execute the query
-    cursor.executemany(query, values)
+    cursor.executemany(query, ordervalues)
 
     # Commit the changes
     connection.commit()
 
     # Display a message
     messagebox.showinfo("Checkout", "The books have been checked out.")
+
+    # Destroy the window
+    window.destroy()
 
     # Clear the cart
     cart.clear()
