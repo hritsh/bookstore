@@ -753,6 +753,9 @@ def checkout(customer_name_entry, customer_email_entry, customer_address_entry, 
     query = "UPDATE Book SET Quantity = Quantity - %s WHERE ISBN = %s"
     values = (quantity, isbn)
 
+    # Execute the query
+    cursor.execute(query, values)
+
     # Commit the changes
     connection.commit()
 
